@@ -54,7 +54,7 @@ class Command(runserver.Command):
                                 "development.crt")),
                             help="Path to the certificate"),
         parser.add_argument("--key",
-                            default=settings.DEFAULT_SSL_KEY (or os.path.join(default_ssl_files_dir(),
+                            default=settings.DEFAULT_SSL_KEY or (os.path.join(default_ssl_files_dir(),
                                 "development.key")),
                             help="Path to the key file"),
         parser.add_argument("--nostatic", dest='use_static_handler',
