@@ -5,6 +5,7 @@ import os
 import ssl
 import sys
 
+from django.conf import settings
 from django.core.servers.basehttp import WSGIRequestHandler
 from django.core.servers.basehttp import WSGIServer
 from django.core.management.base import CommandError
@@ -49,12 +50,12 @@ class Command(runserver.Command):
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
         parser.add_argument("--certificate",
-                            default=os.path.join(default_ssl_files_dir(),
-                                "development.crt"),
+                            default=settings.DEFAULT_SSL_CERT or (os.path.join(default_ssl_files_dir(),
+                                "development.crt")),
                             help="Path to the certificate"),
         parser.add_argument("--key",
-                            default=os.path.join(default_ssl_files_dir(),
-                                "development.key"),
+                            default=settings.DEFAULT_SSL_KEY (or os.path.join(default_ssl_files_dir(),
+                                "development.key")),
                             help="Path to the key file"),
         parser.add_argument("--nostatic", dest='use_static_handler',
                             action='store_false', default=None,
